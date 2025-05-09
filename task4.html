@@ -1,0 +1,429 @@
+<html>
+<head>
+    <title>Project Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .sidebar {
+            background-color: #1e293b;
+            color: #f3f4f6;
+            padding: 20px;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            overflow-y: auto;  
+        }
+        .sidebar-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar-nav li a {
+            display: block;
+            color: #cbd5e1;
+            padding: 12px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+        .sidebar-nav li a:hover {
+            background-color: #334155;
+            color: #f9fafb;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 250px;
+            display: flex;  
+            flex-direction: column;
+        }
+        .dashboard-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            margin-bottom: 20px;
+            display: none;  
+            flex-grow: 1;  
+        }
+        .dashboard-section.active {
+            display: block;  
+        }
+
+        .dashboard-section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 16px;
+        }
+        /* To-Do List Styles */
+        #todo-list-items-dash li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        #todo-list-items-dash li:last-child {
+            border-bottom: none;
+        }
+        .todo-actions button {
+            margin-left: 8px;
+        }
+        /* Product Listing Styles */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .product-item {
+            background-color: #f9fafb;
+            border-radius: 6px;
+            padding: 16px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+        .product-item h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #4b5563;
+            margin-bottom: 8px;
+        }
+        .product-item p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        /* Portfolio Styles */
+        #portfolio-dash nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        #portfolio-dash nav ul li {
+            margin-right: 20px;
+        }
+        #portfolio-dash nav ul li a {
+            color: #6b7280;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        #portfolio-dash nav ul li a:hover {
+            color: #3b82f6;
+        }
+        .portfolio-subsection {
+            display: none;
+        }
+        .portfolio-subsection.active-subsection {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1 class="sidebar-title">Project Dashboard</h1>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#portfolio-dash" data-section="portfolio-dash">Portfolio</a></li>
+                <li><a href="#todo-list-dash" data-section="todo-list-dash">To-Do List</a></li>
+                <li><a href="#product-listing-dash" data-section="product-listing-dash">Product Listing</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="content">
+        <section id="portfolio-dash" class="dashboard-section active">
+            <h2 class="dashboard-section-title">Personal Portfolio</h2>
+            <nav id="portfolio-nav">
+                <ul>
+                    <li><a href="#about-portfolio" data-subsection="about-portfolio">About</a></li>
+                    <li><a href="#projects-portfolio" data-subsection="projects-portfolio">Projects</a></li>
+                    <li><a href="#contact-portfolio" data-subsection="contact-portfolio">Contact</a></li>
+                </ul>
+            </nav>
+            <div id="about-portfolio" class="portfolio-subsection active-subsection">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">About Me</h3>
+                <p class="text-gray-700">
+                    Hello! I'm a web developer passionate about creating beautiful and functional websites.
+                    I have experience in HTML, CSS, and JavaScript, and I'm always eager to learn new technologies.
+                </p>
+            </div>
+            <div id="projects-portfolio" class="portfolio-subsection">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Projects</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 rounded-lg shadow-md p-4">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Basics_Of_Web_Developments</h4>
+                        <p class="text-gray-600">The goal of this project is to understand and apply the foundational concepts of web development using HTML, CSS, and JavaScript. By completing this project, you'll learn how to create a simple webpage, style it with CSS, and add interactivity with JavaScript.</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg shadow-md p-4">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">DOM-_manipulation</h4>
+                        <p class="text-gray-600">This project showcases intermediate HTML, CSS, and JavaScript skills. It includes a styled contact form with validation, a responsive layout using Flexbox and Grid, and a dynamic to-do list and image gallery using DOM manipulation for interactive functionality.</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg shadow-md p-4">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Advanced-Styling-and-JavaScript</h4>
+                        <p class="text-gray-600">This project is a visually engaging Anime Fun Carousel created using HTML, CSS, and JavaScript as part of my internship at ApexPlanet. It features a smooth image slider with custom navigation buttons, animated text effects, and dynamic background gradients that change with each slide. The design is fully responsive across all screen sizes, and the layout is optimized using modern CSS techniques like Flexbox and media queries. This carousel serves as a creative and interactive showcase of front-end development skills.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="contact-portfolio" class="portfolio-subsection">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Contact Me</h3>
+                <p class="text-gray-700 mb-4">
+                    Feel free to reach out to me via email or connect with me on social media.
+                </p>
+                <ul class="list-none">
+                    <li class="mb-2"><span class="font-semibold text-gray-800">Email:</span>niha123@gmail.com</li>
+                    <li><span class="font-semibold text-gray-800">LinkedIn:</span> linkedin.com/nihadurga</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="todo-list-dash" class="dashboard-section">
+            <h2 class="dashboard-section-title">To-Do List App</h2>
+            <div class="mb-4 flex">
+                <input type="text" id="todo-input-dash" placeholder="Add a new task..." class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:border-blue-300 mr-2" />
+                <button id="add-todo-button-dash" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Add</button>
+            </div>
+            <div>
+                <ul id="todo-list-items-dash" class="space-y-2">
+                    </ul>
+            </div>
+        </section>
+
+        <section id="product-listing-dash" class="dashboard-section">
+            <h2 class="dashboard-section-title">Product Listing Page</h2>
+            <div class="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label for="filter-category-dash" class="block text-gray-700 text-sm font-bold mb-2">Filter by Category:</label>
+                    <select id="filter-category-dash" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="">All Categories</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="home">Home Goods</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filter-price-dash" class="block text-gray-700 text-sm font-bold mb-2">Filter by Price:</label>
+                    <select id="filter-price-dash" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="">All Prices</option>
+                        <option value="0-25">$0 - $25</option>
+                        <option value="25-50">$25 - $50</option>
+                        <option value="50-100">$50 - $100</option>
+                        <option value="100+">$100+</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="sort-by-dash" class="block text-gray-700 text-sm font-bold mb-2">Sort By:</label>
+                    <select id="sort-by-dash" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="">None</option>
+                        <option value="name">Name</option>
+                        <option value="rating">Rating</option>
+                        <option value="price">Price</option>
+                    </select>
+                </div>
+            </div>
+            <div id="product-list-container-dash" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+        </section>
+    </div>
+
+    <script>
+        const dashboardLinks = document.querySelectorAll('.sidebar-nav ul li a');
+        const dashboardSections = document.querySelectorAll('.content > section');
+
+        dashboardLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetSectionId = this.getAttribute('data-section');
+
+                dashboardSections.forEach(section => {
+                    section.classList.remove('active');
+                    section.classList.add('hidden');
+                });
+
+                document.getElementById(targetSectionId).classList.add('active');
+                document.getElementById(targetSectionId).classList.remove('hidden');
+            });
+        });
+
+        // Personal Portfolio Sub-navigation
+        const portfolioNavLinks = document.querySelectorAll('#portfolio-dash nav ul li a');
+        const portfolioSubsections = document.querySelectorAll('#portfolio-dash > div');
+
+        portfolioNavLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetSubsectionId = this.getAttribute('data-subsection');
+
+                portfolioSubsections.forEach(subsection => {
+                    subsection.classList.remove('active-subsection');
+                    subsection.classList.add('hidden-subsection');
+                });
+
+                document.getElementById(targetSubsectionId).classList.add('active-subsection');
+                document.getElementById(targetSubsectionId).classList.remove('hidden-subsection');
+            });
+        });
+
+
+
+        // To-Do List App (Dashboard Version)
+        const todoInputDash = document.getElementById('todo-input-dash');
+        const addTodoButtonDash = document.getElementById('add-todo-button-dash');
+        const todoListItemsDash = document.getElementById('todo-list-items-dash');
+
+        let todosDash = JSON.parse(localStorage.getItem('todosDash')) || [];
+
+        function renderTodosDash() {
+            todoListItemsDash.innerHTML = '';
+            todosDash.forEach((todo, index) => {
+                const listItem = document.createElement('li');
+                listItem.className = "bg-gray-50 rounded-md p-2 flex justify-between items-center";
+                let todoContent = `<span class="${todo.completed ? 'line-through text-gray-400' : ''}">${todo.text}</span>`;
+                listItem.innerHTML = todoContent;
+
+                const buttonContainer = document.createElement('div');
+                buttonContainer.className = "todo-actions";
+
+                const completeButton = document.createElement('button');
+                completeButton.textContent = todo.completed ? 'Undo' : 'Complete';
+                completeButton.className = "bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded-md focus:outline-none focus:shadow-outline text-sm";
+                completeButton.addEventListener('click', () => {
+                    todosDash[index].completed = !todosDash[index].completed;
+                    saveTodosDash();
+                    renderTodosDash();
+                });
+                buttonContainer.appendChild(completeButton);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.className = "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded-md focus:outline-none focus:shadow-outline text-sm ml-2";
+                deleteButton.addEventListener('click', () => {
+                    todosDash.splice(index, 1);
+                    saveTodosDash();
+                    renderTodosDash();
+                });
+                buttonContainer.appendChild(deleteButton);
+
+                listItem.appendChild(buttonContainer);
+                todoListItemsDash.appendChild(listItem);
+            });
+        }
+
+        function addTodoDash() {
+            const todoText = todoInputDash.value.trim();
+            if (todoText !== '') {
+                todosDash.push({ text: todoText, completed: false });
+                saveTodosDash();
+                renderTodosDash();
+                todoInputDash.value = '';
+            }
+        }
+
+        function saveTodosDash() {
+            localStorage.setItem('todosDash', JSON.stringify(todosDash));
+        }
+
+        addTodoButtonDash.addEventListener('click', addTodoDash);
+        renderTodosDash();
+
+        // Product Listing Page (Dashboard Version)
+        const productListContainerDash = document.getElementById('product-list-container-dash');
+        const filterCategorySelectDash = document.getElementById('filter-category-dash');
+        const filterPriceSelectDash = document.getElementById('filter-price-dash');
+        const sortBySelectDash = document.getElementById('sort-by-dash');
+
+        const productsDash = [
+            { id: 1, name: 'Laptop', category: 'electronics', price: 800, rating: 4.5 },
+            { id: 2, name: 'T-Shirt', category: 'clothing', price: 20, rating: 3.8 },
+            { id: 3, name: 'Table Lamp', category: 'home', price: 35, rating: 4.2 },
+            { id: 4, name: 'Smartphone', category: 'electronics', price: 1000, rating: 4.8 },
+            { id: 5, name: 'Jeans', category: 'clothing', price: 50, rating: 4.0 },
+            { id: 6, name: 'Sofa', category: 'home', price: 500, rating: 4.6 },
+            { id: 7, name: 'Keyboard', category: 'electronics', price: 75, rating: 4.4 },
+            { id: 8, name: 'Dress', category: 'clothing', price: 40, rating: 4.3 },
+            { id: 9, name: 'Dining Table', category: 'home', price: 300, rating: 4.7 },
+        ];
+
+        function getPriceRangeDash(priceString) {
+            switch (priceString) {
+                case '0-25': return [0, 25];
+                case '25-50': return [25, 50];
+                case '50-100': return [50, 100];
+                case '100+': return [100, Infinity];
+                default: return [0, Infinity];
+            }
+        }
+
+        function renderProductsDash() {
+            const categoryFilter = filterCategorySelectDash.value;
+            const priceFilter = filterPriceSelectDash.value;
+            const sortBy = sortBySelectDash.value;
+
+            const priceRange = getPriceRangeDash(priceFilter);
+
+            const filteredProducts = productsDash.filter(product => {
+                return (
+                    (categoryFilter === '' || product.category === categoryFilter) &&
+                    (product.price >= priceRange[0] && product.price <= priceRange[1])
+                );
+            });
+
+            let sortedProducts = [...filteredProducts];
+            if (sortBy === 'name') {
+                sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortBy === 'rating') {
+                sortedProducts.sort((a, b) => b.rating - a.rating);
+            } else if (sortBy === 'price') {
+                sortedProducts.sort((a, b) => a.price - b.price);
+            }
+
+            productListContainerDash.innerHTML = '';
+            sortedProducts.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = "bg-gray-50 rounded-md shadow-md p-4";
+                productItem.innerHTML = `
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h4>
+                    <p class="text-gray-600 mb-1">Category: ${product.category}</p>
+                    <p class="text-gray-600 mb-1">Price: $${product.price}</p>
+                    <p class="text-gray-600">Rating: ${product.rating}</p>
+                `;
+                productListContainerDash.appendChild(productItem);
+            });
+        }
+
+        filterCategorySelectDash.addEventListener('change', renderProductsDash);
+        filterPriceSelectDash.addEventListener('change', renderProductsDash);
+        sortBySelectDash.addEventListener('change', renderProductsDash);
+        renderProductsDash(); // Initial render
+    </script>
+</body>
+</html>
